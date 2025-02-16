@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('pic')->nullable()->default('nopic.png');
             $table->string('description')->nullable()->default('');
+            $table->string('facebook_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
