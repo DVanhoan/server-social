@@ -32,14 +32,18 @@ class PostController extends Controller
     public function getFeed()
     {
         try {
-            $user = Auth::user();
-            $userIds = $user->followings()->pluck('followed_id');
-            $userIds->push($user->id);
+//            $user = Auth::user();
+//            $userIds = $user->followings()->pluck('followed_id');
+//            $userIds->push($user->id);
+//
+//            return Post::whereIn('user_id', $userIds)
+//                ->with('user', 'likes', 'comments')
+//                ->latest()
+//                ->get();
 
-            return Post::whereIn('user_id', $userIds)
-                ->with('user', 'likes', 'comments')
-                ->latest()
-                ->get();
+            $posts = Post::all();
+
+            return response($posts);
         } catch (\Exception $e) {
             return response([
                 'error' => $e->getMessage(),
