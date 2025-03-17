@@ -41,7 +41,7 @@ class PostController extends Controller
 //                ->latest()
 //                ->get();
 
-            $posts = Post::all();
+            $posts = Post::all()->load('user', 'likes', 'comments')->sortByDesc('created_at');
 
             return response($posts);
         } catch (\Exception $e) {
