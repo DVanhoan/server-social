@@ -36,7 +36,7 @@ class FacebookAuthController extends Controller
 
             $token = JWTAuth::fromUser($user);
 
-            return redirect()->to('https://duongvanhoan.netlify.app/login?token=' . $token);
+            return redirect()->to('http://localhost:3000/login?token=' . $token);
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Login failed!',
