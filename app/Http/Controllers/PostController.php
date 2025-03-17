@@ -43,7 +43,7 @@ class PostController extends Controller
 
             $posts = Post::all()->load('user', 'likes', 'comments')->sortByDesc('created_at');
 
-            return response($posts);
+            return response(['posts' => $posts]);
         } catch (\Exception $e) {
             return response([
                 'error' => $e->getMessage(),
