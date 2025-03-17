@@ -32,16 +32,9 @@ class PostController extends Controller
     public function getFeed()
     {
         try {
-//            $user = Auth::user();
-//            $userIds = $user->followings()->pluck('followed_id');
-//            $userIds->push($user->id);
-//
-//            return Post::whereIn('user_id', $userIds)
-//                ->with('user', 'likes', 'comments')
-//                ->latest()
-//                ->get();
-
-            $posts = Post::all()->load('user', 'likes', 'comments')->sortByDesc('created_at');
+            $posts = Post::with('user', 'likes', 'comments')
+                ->orderByDesc('created_at')
+                ->get();
 
             return response(['posts' => $posts]);
         } catch (\Exception $e) {
@@ -51,6 +44,7 @@ class PostController extends Controller
             ], 500);
         }
     }
+
 
     public function getById($id)
     {
